@@ -2,7 +2,7 @@
 startDate: 
 endDate: 
 template: "[[Template - Event]]"
-recurDay: Monday
+weeklyRecurDay: Monday
 startTime: 15:30
 endTime: 17:00
 ---

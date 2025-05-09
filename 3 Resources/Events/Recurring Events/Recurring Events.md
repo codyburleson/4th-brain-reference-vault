@@ -35,8 +35,8 @@ function getOrdinalSuffix(day) {
 dv.header(2, "Weekly Recurring Events");
 
 // Get all files in the Weekly folder
-const weeklyEvents = dv.pages('"3 Resources/Events/Recurring Events/Weekly"')
-    .where(p => p.recurDay);
+const weeklyEvents = dv.pages()
+    .where(p => p.weeklyRecurDay);
 
 // Map of day numbers to names for sorting and display
 const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -48,7 +48,7 @@ dayNames.forEach((name, index) => {
 // Sort events by day of week and start time
 const sortedWeekly = weeklyEvents.sort(p => [
     // Sort by day number
-    p.recurDay ? (typeof p.recurDay === 'number' ? p.recurDay : dayMap[p.recurDay.toLowerCase()]) : 7,
+    p.weeklyRecurDay ? (typeof p.weeklyRecurDay === 'number' ? p.weeklyRecurDay : dayMap[p.weeklyRecurDay.toLowerCase()]) : 7,
     // Then by start time
     p.startTime || "23:59"
 ]);
@@ -57,7 +57,7 @@ const sortedWeekly = weeklyEvents.sort(p => [
 dv.table(["Event", "Day", "Start Time", "End Time"],
     sortedWeekly.map(p => [
         p.file.link,
-        p.recurDay,
+        p.weeklyRecurDay,
         formatTime12h(p.startTime),
         formatTime12h(p.endTime)
     ])
@@ -67,13 +67,13 @@ dv.table(["Event", "Day", "Start Time", "End Time"],
 dv.header(2, "Monthly Recurring Events");
 
 // Get all files in the Monthly folder
-const monthlyEvents = dv.pages('"3 Resources/Events/Recurring Events/Monthly"')
-    .where(p => p.recurDay);
+const monthlyEvents = dv.pages()
+    .where(p => p.monthlyRecurDay);
 
 // Sort events by day of month and start time
 const sortedMonthly = monthlyEvents.sort(p => [
     // Sort by day of month
-    parseInt(p.recurDay) || 32,
+    parseInt(p.monthlyRecurDay) || 32,
     // Then by start time
     p.startTime || "23:59"
 ]);
@@ -82,7 +82,7 @@ const sortedMonthly = monthlyEvents.sort(p => [
 dv.table(["Event", "Day of Month", "Start Time", "End Time"],
     sortedMonthly.map(p => [
         p.file.link,
-        p.recurDay ? (p.recurDay + getOrdinalSuffix(p.recurDay)) : "N/A",
+        p.monthlyRecurDay ? (p.monthlyRecurDay + getOrdinalSuffix(p.monthlyRecurDay)) : "N/A",
         formatTime12h(p.startTime),
         formatTime12h(p.endTime)
     ])

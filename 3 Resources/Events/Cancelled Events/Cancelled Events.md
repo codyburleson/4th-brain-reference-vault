@@ -14,6 +14,4 @@ dv.table(["Name","Start Date", "End Date"],
 				doc.endDate,
 			])		
     )
-
-    
 ```

@@ -2,5 +2,5 @@
 startDate: 
 endDate: 
 template: "[[Template - Event]]"
-recurDay: "15"
+monthlyRecurDay: "15"
 ---

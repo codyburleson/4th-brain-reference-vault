@@ -1,5 +1,11 @@
 ---
+template: "[[Template - Event]]"
 startDate: 
 endDate: 
-template: "[[Template - Event]]"
+startTime: 
+endTime: 
+weeklyRecurDay: 
+monthlyRecurDay: 
+yearlyRecurMonth: 
+yearlyRecurDay:
 ---
